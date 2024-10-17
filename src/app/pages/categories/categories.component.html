@@ -1,0 +1,50 @@
+@defer{
+    <div class="row p-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Categories</h2>
+                @if (authService.isSuperAdmin()) {
+                    <button (click)="modalService.displayModal('lg', addCategoriesModal)" type="button" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                }
+
+            </div>
+        </div>
+        
+            <div class="col-12">
+                <app-categories-list
+                (callModalAction)="callEdition($event)"
+                (callDeleteAction)="categoriesService.delete($event)"
+                [categories]="categoriesService.category$()"
+                />
+            </div>
+        
+   
+    </div>
+    <app-pagination
+    [service]="categoriesService"
+    />
+}
+@loading (minimum 1s) {
+    <app-loader/>
+}
+
+<ng-template #addCategoriesModal>
+    <app-modal
+        [hideFooter]="true"
+    >
+        
+        <div>
+            <app-categories-form
+                [categoryForm]="categoryForm"
+                (callSaveMethod)="saveCategory($event)"
+                (callUpdateMethod)="updateCategory($event)"
+            />                
+                             
+            
+        </div>
+    </app-modal>
+
+</ng-template>
+

@@ -1,0 +1,50 @@
+<form [formGroup]="productsForm" class="row">
+    <div>
+        <h2>Add product</h2>
+    </div>
+    <div class="mb-2">
+        <label for="description">Description*</label>
+        <input id="description" formControlName="description"
+        type="text" class="form-control">
+        @if (productsForm.controls['description'].invalid && (productsForm.controls['description'].dirty || productsForm.controls['description'].touched)) {
+            <p class="text-danger my-1">This text is required</p>
+        }
+    </div>
+
+    <div class="mb-2">
+        <label for="name">Name*</label>
+        <input id="name" formControlName="name"
+        type="text" class="form-control">
+        @if (productsForm.controls['name'].invalid && (productsForm.controls['name'].dirty || productsForm.controls['name'].touched)) {
+            <p class="text-danger my-1">This text is required</p>
+        }
+    </div>
+    <div class="mb-2">
+        <label class="mb-1" for="price">Price*</label>
+        <input min="1" id="price" formControlName="price" type="number" class="form-control">
+        @if (productsForm.controls['price'].invalid && (productsForm.controls['price'].dirty || productsForm.controls['price'].touched)) {
+          <p class="text-danger my-1">Price minimum required 1</p>
+        }
+    </div>
+
+
+    <div class="mb-2">
+        <label class="mb-1" for="stock">Stock*</label>
+        <input min="1" id="stock" formControlName="stock" type="number" class="form-control">
+        @if (productsForm.controls['stock'].invalid && (productsForm.controls['stock'].dirty || productsForm.controls['stock'].touched)) {
+          <p class="text-danger my-1">Total minimum required 1</p>
+        }
+    </div>
+
+    <div class="mb-2">
+        <label class="mb-1" for="category">Category*</label>
+        <input min="1" id="category" formControlName="category" type="number" class="form-control">
+        @if (productsForm.controls['category'].invalid && (productsForm.controls['category'].dirty || productsForm.controls['category'].touched)) {
+          <p class="text-danger my-1">Category minimum required 1</p>
+        }
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button (click)="callSave()" [disabled]="productsForm.invalid" class="btn btn-primary" type="button">Save</button>
+    </div>
+</form>

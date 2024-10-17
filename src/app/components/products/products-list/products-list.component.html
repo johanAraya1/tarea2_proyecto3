@@ -1,0 +1,38 @@
+<h2>{{title}}</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Category</th>
+      @if (authService.isSuperAdmin()) {
+      <th scope="col">Actions</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of products; track $index) {
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <th>{{item.description}}</th>
+        <th>{{item.name}}</th>
+        <th>{{item.price}}</th>
+        <th>{{item.stock}}</th>
+        <th>{{item.category_id}}</th>
+        @if (authService.isSuperAdmin()) {
+        <th>
+          <button (click)="callModalAction.emit(item);" class="btn btn-warning me-2" type="button"><i class="fas fa-pen"></i></button>
+          <button (click)="callDeleteAction.emit(item);" class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+        </th>
+      }
+      </tr>
+
+    }
+
+  </tbody>
+</table>
